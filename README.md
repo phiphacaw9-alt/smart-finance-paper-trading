@@ -1,0 +1,1 @@
+# smart-finance-paper-trading
