@@ -1,0 +1,99 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0e27;
+  color: #e0e0e0;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  overflow-x: hidden;
+}
+
+/* Terminal effect */
+@layer components {
+  .terminal-text {
+    @apply font-mono text-sm tracking-wider;
+  }
+
+  .neon-glow {
+    @apply shadow-glow-cyan text-neon-cyan;
+  }
+
+  .glass-card {
+    @apply backdrop-glass border border-dark-border rounded-lg p-6;
+  }
+
+  .btn-neon {
+    @apply px-6 py-2 rounded border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-dark-bg transition-all duration-300 font-mono text-sm;
+  }
+
+  .btn-neon-purple {
+    @apply px-6 py-2 rounded border-2 border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white transition-all duration-300 font-mono text-sm;
+  }
+
+  .input-neon {
+    @apply w-full bg-dark-card border border-neon-cyan rounded px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-neon-cyan;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-dark-card to-dark-bg;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1f3a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00d9ff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b366ff;
+}
+
+/* Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
