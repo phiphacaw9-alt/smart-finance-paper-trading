@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  balance   Float    @default(10000)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trades Trade[]
+
+  @@map("users")
+}
+
+model Trade {
+  id          String    @id @default(cuid())
+  userId      String
+  symbol      String
+  quantity    Float
+  entryPrice  Float
+  exitPrice   Float?
+  pnl         Float?
+  tradeType   String
+  status      String @default("OPEN")
+  stopLoss    Float?
+  takeProfit  Float?
+  entryTime   DateTime  @default(now())
+  exitTime    DateTime?
+  closeReason String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("trades")
+}
